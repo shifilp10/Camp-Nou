@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Cart</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.cart-table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.cart-table th, .cart-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+.cart-table th {
+  background: #1a1a1a;
+  color: #ff0000;
+}
+.cart-table td {
+  color: #ccc;
+}
+button.remove-btn {
+  background: #ff0000;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button.remove-btn:hover {
+  background: #e60000;
+}
+.cart-total {
+  text-align: right;
+  width: 90%;
+  margin: 20px auto;
+  font-size: 1.5em;
+  color: #ff0000;
+}
+</style>
+</head>
+<body>
+<header>
+  CAMP NOU
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Jerseys</a>
+    <a href="cart.html">Cart</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+</header>
+
+<section id="cart">
+  <h2 style="text-align:center;color:#ff0000;">Your Cart</h2>
+  <table class="cart-table">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td>Barcelona Home Jersey</td>
+      <td>$99.99</td>
+      <td>1</td>
+      <td><button class="remove-btn">Remove</button></td>
+    </tr>
+    <tr>
+      <td>Barcelona Away Jersey</td>
+      <td>$99.99</td>
+      <td>2</td>
+      <td><button class="remove-btn">Remove</button></td>
+    </tr>
+  </table>
+  <div class="cart-total">Total: $299.97</div>
+</section>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+</body>
+</html>

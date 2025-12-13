@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Contact</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.contact-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 15px;
+}
+.contact-container h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.contact-container input, .contact-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+}
+.contact-container input[type="submit"] {
+  background: #ff0000;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+.contact-container input[type="submit"]:hover {
+  background: #e60000;
+}
+</style>
+</head>
+<body>
+<header>
+  CAMP NOU
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Jerseys</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section id="contact">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Message" required></textarea>
+      <input type="submit" value="Send Message">
+    </form>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+</body>
+</html>
