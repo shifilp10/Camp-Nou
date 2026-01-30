@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Reviews</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 0; /* keep below header */
+}
+
+header, section, footer { position: relative; z-index: 1; }
+
+/* ---------- NAVBAR ---------- */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;         /* full width */
+  z-index: 10;         /* above overlay */
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff2a2a;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+
+nav a:hover::after,
+nav a.active::after { width: 100%; }
+
+/* ---------- REVIEWS ---------- */
+#reviews {
+  max-width: 1100px;
+  margin: 90px auto;
+  padding: 0 20px;
+}
+
+#reviews h2 {
+  text-align: center;
+  font-size: 2.6rem;
+  color: #ff2a2a;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 50px;
+}
+
+/* ---------- GRID ---------- */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* ---------- CARD ---------- */
+.review-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 26px;
+  transition: 0.35s;
+}
+
+.review-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255,0,0,0.4);
+}
+
+/* ---------- PROFILE ---------- */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.profile img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff2a2a;
+}
+
+.profile h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+/* ---------- STARS ---------- */
+.stars {
+  color: #ff2a2a;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+/* ---------- TEXT ---------- */
+.review-card p {
+  color: #ddd;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  margin-top: 80px;
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff2a2a;
+}
+
+@media (max-width: 768px) {
+  nav { gap: 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html" class="active">Reviews</a>
+      <a href="offers.html">Offers</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+  <p class="subtitle"<b> What Fans Are Saying </b></p>
+
+  <div class="review-grid">
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/high/thanos-doge-a1sf382if139w2x5.webp">
+        <h3>Thanos</h3>
+      </div>
+      <div class="stars">★★★★☆</div>
+      <p>Absolutely thrilled with my purchase! The Barcelona jersey feels premium and fits perfectly.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/hd/captain-america-bright-shield-artwork-218dfbg7vogryynz.webp">
+        <h3>Sreve Roger</h3>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>Fast delivery and amazing quality. CAMP NOU exceeded my expectations.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/high/iron-man2-armored-hero-stance-wo2d7ofj6b1plpui.webp">
+        <h3>Tony Stark</h3>
+      </div>
+      <div class="stars">★★★★☆</div>
+      <p>Super comfortable jersey with authentic stitching. Definitely ordering again.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/high/loki-1600-x-1204-picture-lhm9kqy45fasxjo7.webp">
+        <h3>Loki Asgard</h3>
+      </div>
+      <div class="stars">★★★☆☆</div>
+      <p>The Argentina jersey quality is outstanding. Feels just like the original match kit.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/high/spiderman-9eej02c6q1dxyiki.webp">
+        <h3>Peter Parker</h3>
+      </div>
+      <div class="stars">★★★★☆</div>
+      <p>Love the fabric and fit! Looks stylish even outside the stadium.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="profile">
+        <img src="https://wallpapers.com/images/high/cool-green-incredible-hulk-fanart-3jnlyqfg6bousekh.webp">
+        <h3>Bruce Banner</h3>
+      </div>
+      <div class="stars">★★★☆☆</div>
+      <p>Great value for money. Clean design, solid stitching, and comfortable to wear.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Gift Card Payment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer { position: relative; z-index: 1; }
+
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after { width: 100%; }
+
+/* ---------- PAYMENT SECTION ---------- */
+section#payment {
+  max-width: 500px;
+  margin: 80px auto;
+  background: rgba(0,0,0,0.75);
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+section#payment h2 {
+  color: #ff0000;
+  font-size: 2em;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.payment-info {
+  margin-bottom: 30px;
+  font-size: 1.2em;
+}
+
+.payment-info span {
+  font-weight: 700;
+  color: #ff0000;
+}
+
+button.pay-now {
+  padding: 15px 40px;
+  font-size: 1.1em;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff0000, #b30000);
+  color: #fff;
+  transition: 0.3s;
+}
+
+button.pay-now:hover {
+  background: linear-gradient(135deg, #ff2a2a, #ff0000);
+  box-shadow: 0 0 15px #ff0000;
+  transform: scale(1.05);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+  letter-spacing: 1px;
+}
+
+/* ---------- POPUP MODAL ---------- */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(26,26,26,0.95);
+  padding: 40px 50px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 100;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.popup h3 {
+  margin: 0 0 15px 0;
+  color: #ff0000;
+  font-size: 1.8em;
+}
+
+.popup p {
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.payment-methods {
+  margin: 20px 0;
+  text-align: left;
+  font-size: 1.1em;
+  color: #ccc;
+}
+
+.payment-methods li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(255,0,0,0.1);
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.payment-methods li:hover {
+  background: rgba(255,0,0,0.3);
+}
+
+.card-form {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ff0000;
+  outline: none;
+  font-size: 1em;
+}
+
+.card-form input:focus {
+  box-shadow: 0 0 10px #ff0000;
+  border-color: #ff0000;
+}
+
+.card-form button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff0000, #b30000);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #ff0000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="giftcards.html" class="active">GiftCards</a>
+      <a href="support.html">Support</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section id="payment">
+  <h2>Gift Card Payment</h2>
+  <div class="payment-info">
+    <p>Recipient Name: <span id="recipientDisplay">---</span></p>
+    <p>Amount: $<span id="amountDisplay">0</span></p>
+  </div>
+  <button class="pay-now" id="payNowBtn">Pay Now</button>
+</section>
+
+<!-- PAYMENT POPUP -->
+<div class="popup" id="paymentPopup">
+  <h3>🎉 Payment Details</h3>
+  <p>Gift card for: <span id="popupRecipient">---</span></p>
+  <p>Amount: $<span id="popupAmount">0</span></p>
+  <p>Please choose a payment method:</p>
+  <ul class="payment-methods">
+    <li id="creditCard">💳 Credit/Debit Card</li>
+    <li id="paypal">🅿️ PayPal (Simulated)</li>
+    <li id="netbanking">🏦 Net Banking (Simulated)</li>
+  </ul>
+
+  <!-- Credit/Debit Card Form -->
+  <div class="card-form" id="cardForm">
+    <input type="text" placeholder="Cardholder Name" required>
+    <input type="text" placeholder="Card Number" maxlength="16" required>
+    <input type="text" placeholder="Expiry MM/YY" maxlength="5" required>
+    <input type="text" placeholder="CVV" maxlength="3" required>
+    <button id="confirmCardPayment">Confirm Payment</button>
+  </div>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div class="popup" id="successPopup">
+  <h3>✅ Payment Successful!</h3>
+  <p>Gift Card purchased for: <span id="successRecipient">---</span></p>
+  <p>Amount: $<span id="successAmount">0</span></p>
+  <p>Thank you for your purchase! 🎉</p>
+  <button id="closeSuccess">Close</button>
+</div>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script>
+// Get recipient and amount from URL
+const urlParams = new URLSearchParams(window.location.search);
+const amount = urlParams.get('amount') || '0';
+const recipient = urlParams.get('recipient') || '---';
+
+document.getElementById('amountDisplay').textContent = amount;
+document.getElementById('recipientDisplay').textContent = decodeURIComponent(recipient);
+
+const payNowBtn = document.getElementById('payNowBtn');
+const paymentPopup = document.getElementById('paymentPopup');
+const popupRecipient = document.getElementById('popupRecipient');
+const popupAmount = document.getElementById('popupAmount');
+const creditCard = document.getElementById('creditCard');
+const cardForm = document.getElementById('cardForm');
+const confirmCardPayment = document.getElementById('confirmCardPayment');
+const successPopup = document.getElementById('successPopup');
+const successRecipient = document.getElementById('successRecipient');
+const successAmount = document.getElementById('successAmount');
+const closeSuccess = document.getElementById('closeSuccess');
+
+// Show payment popup
+payNowBtn.addEventListener('click', () => {
+  popupRecipient.textContent = decodeURIComponent(recipient);
+  popupAmount.textContent = amount;
+  paymentPopup.classList.add('active');
+});
+
+// Show credit/debit card form
+creditCard.addEventListener('click', () => {
+  cardForm.style.display = 'block';
+});
+
+// Confirm card payment
+confirmCardPayment.addEventListener('click', () => {
+  paymentPopup.classList.remove('active');
+  successRecipient.textContent = decodeURIComponent(recipient);
+  successAmount.textContent = amount;
+  successPopup.classList.add('active');
+});
+
+// Close success popup
+closeSuccess.addEventListener('click', () => {
+  successPopup.classList.remove('active');
+  window.location.href = "giftcards.html";
+});
+
+// Close popup if clicking outside
+window.addEventListener('click', function(e){
+  if(e.target === paymentPopup) paymentPopup.classList.remove('active');
+  if(e.target === successPopup) successPopup.classList.remove('active');
+});
+</script>
+
+</body>
+</html>

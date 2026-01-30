@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - FAQ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR (ALIGNED & CENTERED) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  position: relative;
+  padding: 6px 2px;
+  text-align: center;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- FAQ SECTION ---------- */
+section#faq {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 40px 20px;
+}
+
+section#faq h2 {
+  text-align: center;
+  color: #ff0000;
+  margin-bottom: 25px;
+  font-size: 2.6em;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+/* ---------- SEARCH BAR ---------- */
+#faqSearch {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  display: block;
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1em;
+  outline: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+#faqSearch::placeholder {
+  color: #ccc;
+}
+
+/* ---------- FAQ ACCORDION ---------- */
+.faq-card {
+  background: rgba(0,0,0,0.75);
+  margin-bottom: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.faq-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+}
+
+.faq-card h4 {
+  color: #ff0000;
+  margin: 0;
+  padding: 18px 20px;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-card h4::after {
+  content: '+';
+  font-size: 1.5em;
+}
+
+.faq-card.active h4::after {
+  content: '−';
+}
+
+.faq-card p {
+  color: #ccc;
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-card.active p {
+  max-height: 250px;
+  padding: 15px 20px;
+}
+
+/* ---------- HIGHLIGHT ---------- */
+.highlight {
+  background: #ff2a2a;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  nav {
+    gap: 16px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section id="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <input type="text" id="faqSearch" placeholder="Search your question...">
+
+  <div class="faq-card">
+    <h4>What is the shipping time?</h4>
+    <p>Shipping usually takes 5-7 business days for domestic orders.</p>
+  </div>
+
+  <div class="faq-card">
+    <h4>Can I return a jersey?</h4>
+    <p>Yes, returns are accepted within 14 days of delivery.</p>
+  </div>
+
+  <div class="faq-card">
+    <h4>How can I track my order?</h4>
+    <p>After shipment, a tracking number will be sent to your registered email address.</p>
+  </div>
+
+  <div class="faq-card">
+    <h4>Do you offer international shipping?</h4>
+    <p>Yes, we ship internationally. Additional charges may apply.</p>
+  </div>
+</section>
+
+<footer>
+  © 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script>
+const faqCards = document.querySelectorAll('.faq-card');
+const searchInput = document.getElementById('faqSearch');
+
+faqCards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('active');
+  });
+});
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase();
+
+  faqCards.forEach(card => {
+    const qEl = card.querySelector('h4');
+    const aEl = card.querySelector('p');
+
+    const qText = qEl.dataset.original || qEl.innerText;
+    const aText = aEl.dataset.original || aEl.innerText;
+
+    qEl.dataset.original = qText;
+    aEl.dataset.original = aText;
+
+    if (!query) {
+      qEl.innerHTML = qText;
+      aEl.innerHTML = aText;
+      card.style.display = 'block';
+      return;
+    }
+
+    if (qText.toLowerCase().includes(query) || aText.toLowerCase().includes(query)) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      qEl.innerHTML = qText.replace(regex, `<span class="highlight">$1</span>`);
+      aEl.innerHTML = aText.replace(regex, `<span class="highlight">$1</span>`);
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

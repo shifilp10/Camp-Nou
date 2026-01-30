@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Support</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- SUPPORT SECTION ---------- */
+section#support {
+  max-width: 700px;
+  margin: 70px auto;
+  padding: 30px 20px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 15px;
+  text-align: center;
+}
+
+section#support h2 {
+  color: #ff0000;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+section#support input,
+section#support textarea,
+section#support button {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+}
+
+section#support button {
+  background: #ff0000;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+section#support button:hover {
+  background: #e60000;
+}
+
+/* ---------- MODAL ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 9999;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  color: #fff;
+  box-shadow: 0 0 15px #ff0000;
+  transform: translateY(-100px);
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-100px); }
+}
+
+.modal-content h3 {
+  color: #ff0000;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.modal-content button {
+  padding: 10px 25px;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Jerseys</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html" class="active">Support</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section id="support">
+  <h2>Need Help?</h2>
+  <form id="supportForm">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Describe your issue" required></textarea>
+    <button type="submit">Submit Ticket</button>
+  </form>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="supportModal">
+  <div class="modal-content">
+    <h3>🎉 Ticket Submitted!</h3>
+    <p>Thank you for contacting CAMP NOU Support.<br>Our team will get back to you shortly.</p>
+    <button id="closeSupportModal">OK</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script>
+const supportForm = document.getElementById("supportForm");
+const supportModal = document.getElementById("supportModal");
+const modalContent = supportModal.querySelector(".modal-content");
+const closeBtn = document.getElementById("closeSupportModal");
+
+supportForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+  supportModal.classList.add("active");
+  modalContent.style.animation = "slideDown 0.5s forwards";
+  supportForm.reset();
+});
+
+function closeModal() {
+  modalContent.style.animation = "slideUp 0.5s forwards";
+  setTimeout(() => {
+    supportModal.classList.remove("active");
+  }, 500);
+}
+
+closeBtn.addEventListener("click", closeModal);
+window.addEventListener("click", function(e) {
+  if (e.target === supportModal) closeModal();
+});
+</script>
+
+</body>
+</html>

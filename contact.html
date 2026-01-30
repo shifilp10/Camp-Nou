@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Contact</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- CONTACT FORM ---------- */
+.contact-container {
+  max-width: 600px;
+  margin: 80px auto;
+  background: rgba(26,26,26,0.95);
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.contact-container h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.contact-container input,
+.contact-container textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+}
+
+.contact-container input[type="submit"] {
+  background: #ff0000;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: 0.3s ease;
+}
+
+.contact-container input[type="submit"]:hover {
+  background: #e60000;
+  transform: scale(1.05);
+}
+
+/* ---------- POPUP MODAL ---------- */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(26,26,26,0.95);
+  padding: 40px 50px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 100;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.popup h3 {
+  margin: 0 0 15px 0;
+  color: #ff0000;
+  font-size: 1.8em;
+}
+
+.popup p {
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 25px;
+}
+
+.popup button {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popup button:hover {
+  background: #e60000;
+  transform: scale(1.05);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  nav {
+    gap: 14px;
+  }
+
+  .contact-container {
+    margin: 60px 20px;
+  }
+
+  .popup {
+    padding: 30px 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="offers.html">Offers</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<section id="contact">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Message" required></textarea>
+      <input type="submit" value="Send Message">
+    </form>
+  </div>
+</section>
+
+<!-- POPUP MODAL -->
+<div class="popup" id="popup">
+  <h3>Message Sent!</h3>
+  <p>✅ Thanks! Someone from our team will contact you shortly.</p>
+  <button onclick="closePopup()">Close</button>
+</div>
+
+
+<footer>
+  © 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script>
+const form = document.getElementById('contactForm');
+const popup = document.getElementById('popup');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  popup.classList.add('active');
+  this.reset();
+});
+
+function closePopup() {
+  popup.classList.remove('active');
+}
+</script>
+
+</body>
+</html>

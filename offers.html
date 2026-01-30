@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Offers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR (SAME AS PRODUCTS PAGE) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+/* Underline animation */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- OFFERS SECTION ---------- */
+section#offers {
+  max-width: 700px;
+  margin: 70px auto;
+  padding: 30px 20px;
+}
+
+section#offers h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ff0000;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+/* Offer cards */
+.offer-card {
+  background: rgba(0,0,0,0.75);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.offer-card h3 {
+  color: #ff0000;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #ff0000;
+}
+
+.offer-card p {
+  color: #ccc;
+  font-size: 1.1em;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="offers.html" class="active">Offers</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section id="offers">
+  <h2>Current Offers</h2>
+  <div class="offer-card">
+    <h3>Buy 2 Get 1 Free</h3>
+    <p>On selected Barcelona jerseys. Limited time only!</p>
+  </div>
+  <div class="offer-card">
+    <h3>10% Off for New Customers</h3>
+    <p>Sign up and enjoy 10% discount on your first purchase.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+</body>
+</html>

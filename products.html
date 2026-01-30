@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Jerseys</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover fixed;
+  color: #fff;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 0;
+}
+
+header, section, footer { position: relative; z-index: 1; }
+
+/* ---------- NAVBAR (CENTERED) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after { width: 100%; }
+
+/* ---------- PRODUCTS ---------- */
+#products {
+  max-width: 1200px;
+  margin: 90px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+#products h2 {
+  font-size: 2.3rem;
+  color: #ff0000;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/* ---------- PRODUCT CARD ---------- */
+.product-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255,0,0,0.6);
+}
+
+.product-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-card h3 {
+  margin: 12px 0 5px;
+}
+
+.product-card p {
+  color: #ff0000;
+  font-weight: 700;
+}
+
+/* ---------- CONTROLS ---------- */
+.size-select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  border: 1px solid #ff0000;
+}
+
+.product-card button {
+  margin-top: 10px;
+  width: 100%;
+  background: linear-gradient(135deg, #ff0000, #b30000);
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #ff0000;
+}
+
+/* ---------- CART BADGE ---------- */
+#cart-badge {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  background: #ff0000;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  z-index: 20;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  margin-top: 80px;
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html" class="active">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="offers.html">Offers</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section id="products">
+  <h2>OUR LATEST COLLECTIONS</h2>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<footer>
+© 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<div id="cart-badge">🛒 0</div>
+
+<script>
+const jerseys = [
+  { name: "Argentina", img: "https://media.gettyimages.com/id/1457417757/photo/lusail-city-qatar-lionel-messi-of-argentina-lifts-the-fifa-world-cup-qatar-2022-winners.jpg?s=612x612&w=0&k=20&c=V3joj_nf2MUZfr_35gcWKEa6-OJigUuuCaajrIfSj24=" },
+  { name: "Brazil", img: "https://media.gettyimages.com/id/1473718198/photo/paulo-sergio-jorginho-and-viola-from-brazil-celebrate-with-the-fifa-world-cup-trophy-after.jpg?s=612x612&w=0&k=20&c=YFhkLKRDfhOeCfV7OlKDi-tnwhNL_kHapuabSzBUztc=" },
+  { name: "portugal", img: "https://media.gettyimages.com/id/2219217423/photo/munich-germany-cristiano-ronaldo-of-portugal-lifts-the-uefa-nations-league-trophy-after-his.jpg?s=612x612&w=0&k=20&c=nOerZSDVok_Js6VoXVWkLpC0AeVsRI6_jUKXbEC1i9s=" },
+  { name: "Germany", img: "https://media.gettyimages.com/id/452120030/photo/rio-de-janeiro-brazil-manuel-neuer-of-germany-celebrates-with-world-cup-trophy-after-defeating.jpg?s=612x612&w=0&k=20&c=gA0U26OjzNInAtMEBcrArNBrpz9D6dHoV1OPLi9c4zo=" },
+  { name: "Barcelona", img: "https://media.gettyimages.com/id/2215773883/photo/barcelona-spain-robert-lewandowski-of-fc-barcelona-celebrates-with-the-trophy-after-the-match.jpg?s=612x612&w=0&k=20&c=leLnlPTtLnEXrwGDRk83xZ-1jfcHks-lxoBSCx8As5Y=" },
+  { name: "Real Madrid", img: "https://media.gettyimages.com/id/2155639368/photo/london-england-nacho-fernandez-of-real-madrid-lifts-the-uefa-champions-league-trophy-after.jpg?s=612x612&w=0&k=20&c=bwHgKnn-rXaoz31zefYfsBGazWVuqi4UIqA4L5IaeYo=" },
+  { name: "LiverPool", img: "https://media.gettyimages.com/id/2216998227/photo/liverpool-england-virgil-van-dijk-of-liverpool-lifts-the-premier-league-trophy-as-liverpool.jpg?s=612x612&w=0&k=20&c=ADuoaRfPMr9f_JZ38K2Htfs23ysSUm_OR-5RwSuLPlw=" },
+  { name: "Manchester united ", img: "https://media.gettyimages.com/id/74138720/photo/manchester-united-kingdom-ryan-giggs-and-gary-neville-of-manchester-united-lift-the-premiership.jpg?s=612x612&w=0&k=20&c=KKBNlnpBXhTssqx5b_8DhXai2fM4WoTsQLsFt7xxInk=" },
+  { name: "France", img: "https://media.gettyimages.com/id/999517110/photo/moscow-russia-hugo-lloris-of-france-lifts-the-world-cup-trophy-to-celebrate-with-his-teammates.jpg?s=612x612&w=0&k=20&c=qIYDfy3cwRCvD6Y1WirzdEuWTUXSO7hgnxxEBjLCDLw=" },
+  { name: "Spain", img: "https://media.gettyimages.com/id/2162037185/photo/berlin-germany-alvaro-morata-of-spain-lifts-the-uefa-euro-2024-henri-delaunay-trophy-after.jpg?s=612x612&w=0&k=20&c=sjt7G49dk6iOIHLYt3lCh_GcAez47LAQXJatFWavd8s=" },
+  { name: "Italy", img: "https://media.gettyimages.com/id/71404165/photo/berlin-the-italian-players-celebrate-as-fabio-cannavaro-of-italy-lifts-the-world-cup-trophy.jpg?s=612x612&w=0&k=20&c=-9ooFYok2dhUHu7NNSGoUd6haVlnwWNnwUGLpbbTuko=" },
+  { name: "Mexico", img: "https://media.gettyimages.com/id/2223265117/photo/mexicos-players-celebrate-with-the-trophy-their-victory-at-the-end-of-the-concacaf-gold-cup.jpg?s=612x612&w=0&k=20&c=x1RYLFiQifEqhtS-afPBVN62B8gkHQnsDxgeRuzx880=" },
+  { name: "PSG", img: "https://media.gettyimages.com/id/2218074774/photo/munich-germany-marquinhos-of-paris-saint-germain-lifts-the-uefa-champions-league-trophy-after.jpg?s=612x612&w=0&k=20&c=NMlYcRua3KGX7fN_IBlDUrO4sIhD_i5Z4p0V9dXB6Ts=" },
+  { name: "Manchester city", img: "https://media.gettyimages.com/id/2153310163/photo/manchester-england-kyle-walker-of-manchester-city-lifts-the-premier-league-trophy-with-team.jpg?s=612x612&w=0&k=20&c=WMHk4LEP-q6ZhqBw4PgHFbT1vcL_ZDaV4cCAlfqR73g=" },
+  { name: "Juventus", img: "https://media.gettyimages.com/id/145801053/photo/turin-italy-the-juventus-fc-players-celebrate-with-the-serie-a-trophy-after-the-serie-a-match.jpg?s=612x612&w=0&k=20&c=jMCPMTTxbpGsvBYIEItUta7DOTzM3i3qWaVejNE77CM=" },
+  { name: "Chelsea", img: "https://media.gettyimages.com/id/2224952111/photo/east-rutherford-new-jersey-cole-palmer-of-chelsea-fc-lifts-the-fifa-club-world-cup-trophy.jpg?s=612x612&w=0&k=20&c=q66cOSDt2_-CjJqRbwftszLRyTjh3GmzZPJqD78wXbY=" },
+  { name: "Belgium", img: "https://media.gettyimages.com/id/1802454346/photo/brussels-belgium-the-players-of-belgium-line-up-during-the-national-anthems-prior-to-kick-off.jpg?s=612x612&w=0&k=20&c=tA_jy9ODA2_2Yqp11cXIOBhVamKznW2OeSgnTIcgmWE=" },
+  { name: "England", img: "https://media.gettyimages.com/id/2222655099/photo/bratislava-slovakia-james-mcatee-of-england-lifts-the-uefa-european-under-21-championship.jpg?s=612x612&w=0&k=20&c=ZxAm8kwUW631qcNuBnbog9JFxL-bu9sNA8OCun2msdo=" },
+  { name: "Chile", img: "https://media.gettyimages.com/id/479491020/photo/santiago-chile-players-of-chile-celebrate-with-the-trophy-after-winning-the-2015-copa-america.jpg?s=612x612&w=0&k=20&c=YlpQNNkQE4I70PXFWofClA50R3w-u56Me9iiTdX3uTs=" },
+  { name: "NetherLands", img: "https://media.gettyimages.com/id/2156418992/photo/rotterdam-netherlands-virgil-van-dijk-of-the-netherlands-scores-the-2-0-and-celebrates-the.jpg?s=612x612&w=0&k=20&c=b65sHLGxDOOz8jbsEvRO1mgnSR2n2l5Z75tISwGEJGs=" }
+];
+
+const grid = document.getElementById("productGrid");
+
+grid.innerHTML = jerseys.map(j => `
+  <div class="product-card">
+    <img src="${j.img}" alt="${j.name} Jersey">
+    <h3>${j.name.toUpperCase()}</h3>
+    <p>$99.99</p>
+    <select class="size-select">
+      <option value="">Select Size</option>
+      <option>S</option><option>M</option><option>L</option>
+      <option>XL</option><option>XXL</option>
+    </select>
+    <button onclick="addToCart('${j.name} Jersey', 99.99, this)">Add to Cart</button>
+  </div>
+`).join("");
+
+// Add item to cart and update badge
+function addToCart(name, price, btn) {
+  const card = btn.closest(".product-card");
+  const size = card.querySelector(".size-select").value;
+  if (!size) return alert("Please select a size!");
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let item = cart.find(i => i.name === name && i.size === size);
+  item ? item.qty++ : cart.push({ name, price, size, qty: 1 });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  document.getElementById("cart-badge").textContent =
+    "🛒 " + cart.reduce((a, b) => a + b.qty, 0);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Checkout</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer { position: relative; z-index: 1; }
+
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after { width: 100%; }
+
+section#checkout {
+  max-width: 800px;
+  margin: 70px auto;
+  padding: 40px 20px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 15px;
+}
+
+section#checkout h2 {
+  text-align: center;
+  color: #ff0000;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+}
+
+.cart-summary {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+.cart-summary th, .cart-summary td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+
+.cart-summary th {
+  background: #1a1a1a;
+  color: #ff0000;
+}
+
+.cart-total {
+  text-align: right;
+  font-size: 1.2em;
+  margin-bottom: 25px;
+  color: #ff0000;
+}
+
+section#checkout form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+section#checkout input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+}
+
+section#checkout input[type="submit"] {
+  background: #ff0000;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+section#checkout input[type="submit"]:hover {
+  background: #e60000;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 9999;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  margin-top: 120px;
+  box-shadow: 0 0 15px #ff0000;
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 { color: #ff0000; margin-bottom: 15px; }
+
+.modal-content button {
+  padding: 10px 25px;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+input:invalid { border: 2px solid #ff0000; }
+input:valid { border: 2px solid #00ff00; }
+
+/* BILL STYLES */
+#billContent {
+  display: none;
+  max-width: 600px;
+  width: 90%;
+  padding: 25px 30px;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat;
+  color: #fff;
+  border-radius: 15px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+  position: relative;
+  margin: 50px auto;
+  overflow: hidden;
+}
+
+#billContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  border-radius: 15px;
+  z-index: 0;
+}
+
+#billContent * { position: relative; z-index: 1; }
+
+#billContent h2 { text-align: center; margin-bottom: 15px; color: #ff0000; }
+
+#customerDetails {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+#billTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#billTable th, #billTable td {
+  border: 1px solid #fff;
+  padding: 8px;
+  text-align: center;
+}
+
+#billTotal {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+@media (max-width: 768px) {
+  nav { gap: 14px; }
+  section#checkout { margin: 60px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="checkout.html" class="active">Checkout</a>
+    </nav>
+  </div>
+</header>
+
+<section id="checkout">
+  <h2>Checkout</h2>
+
+  <table class="cart-summary" id="cartTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="cart-total" id="cartTotal"></div>
+
+  <form id="checkoutForm">
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Enter a 10-digit phone number">
+    <input type="text" id="address" placeholder="Address" required>
+    <input type="text" id="city" placeholder="City" required>
+    <input type="text" id="postal" placeholder="Postal Code" required pattern="[0-9]{5}" title="Enter a 5-digit postal code">
+    <input type="text" placeholder="Credit Card Number" required pattern="[0-9]{16}" title="Enter a 16-digit card number">
+    <input type="month" required>
+    <input type="tel" placeholder="CVV" required pattern="[0-9]{3}" title="Enter a 3-digit CVV">
+    <input type="submit" value="Place Order">
+  </form>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <h3>✅ Order Placed!</h3>
+    <p>Thank you for shopping with CAMP NOU.</p>
+    <button id="closeModal">OK</button>
+    <button id="downloadBill">Download Bill</button>
+  </div>
+</div>
+
+<!-- Hidden bill for PDF -->
+<div id="billContent">
+  <h2>CAMP NOU Invoice</h2>
+  <div id="customerDetails"></div>
+  <table id="billTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p id="billTotal"></p>
+</div>
+
+<footer>
+  © 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+const cartTableBody = document.querySelector("#cartTable tbody");
+const cartTotalDiv = document.getElementById("cartTotal");
+const form = document.getElementById("checkoutForm");
+const modal = document.getElementById("orderModal");
+const closeBtn = document.getElementById("closeModal");
+const downloadBtn = document.getElementById("downloadBill");
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const deliveryCharge = 5;
+
+if (!cart.length) {
+  alert("Your cart is empty! Redirecting to cart page.");
+  window.location.href = "cart.html";
+}
+
+function renderCart() {
+  cartTableBody.innerHTML = "";
+  let total = 0;
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    cartTableBody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>$${item.price.toFixed(2)}</td>
+        <td>${item.qty}</td>
+        <td>$${subtotal.toFixed(2)}</td>
+      </tr>`;
+  });
+  cartTotalDiv.textContent = `Total: $${(total + deliveryCharge).toFixed(2)} (including $${deliveryCharge} delivery)`;
+}
+renderCart();
+
+function generateBill() {
+  const name = document.getElementById("fullName").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const address = document.getElementById("address").value;
+  const city = document.getElementById("city").value;
+  const postal = document.getElementById("postal").value;
+
+  document.getElementById("customerDetails").innerHTML = `
+    <strong>Customer Details:</strong><br>
+    Name: ${name}<br>
+    Email: ${email}<br>
+    Phone: ${phone}<br>
+    Address: ${address}, ${city}, ${postal}<br>
+  `;
+
+  const billTbody = document.querySelector("#billTable tbody");
+  billTbody.innerHTML = "";
+  let total = 0;
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    billTbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>$${item.price.toFixed(2)}</td>
+        <td>${item.qty}</td>
+        <td>$${subtotal.toFixed(2)}</td>
+      </tr>`;
+  });
+
+  document.getElementById("billTotal").textContent =
+    `Total: $${(total + deliveryCharge).toFixed(2)} (including $${deliveryCharge} delivery)`;
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  if (!form.checkValidity()) return form.reportValidity();
+  modal.classList.add("active");
+});
+
+closeBtn.onclick = () => { 
+  modal.classList.remove("active"); 
+  window.location.href="cart.html"; 
+};
+
+downloadBtn.onclick = () => {
+  generateBill();
+  const element = document.getElementById('billContent');
+  element.style.display = "block";
+  html2pdf().from(element).save('CAMP_NOU_Bill.pdf');
+  element.style.display = "none";
+  localStorage.removeItem("cart"); // Clear cart after download
+};
+</script>
+
+</body>
+</html>

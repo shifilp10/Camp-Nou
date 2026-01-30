@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - Newsletter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR (PRODUCTS PAGE STYLE) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+/* underline animation */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- NEWSLETTER SECTION ---------- */
+section#newsletter {
+  max-width: 500px;
+  margin: 70px auto;
+  padding: 30px 20px;
+}
+
+.newsletter-container {
+  background: rgba(0,0,0,0.75);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.newsletter-container h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.newsletter-container input[type="email"] {
+  width: 80%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,0,0,0.3);
+  outline: none;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.newsletter-container input[type="email"]:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 12px rgba(255,0,0,0.6);
+}
+
+.newsletter-container input[type="submit"] {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #ff0000, #b30000);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter-container input[type="submit"]:hover {
+  background: linear-gradient(135deg, #ff2a2a, #ff0000);
+  box-shadow: 0 0 15px #ff0000;
+  transform: scale(1.05);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+  letter-spacing: 1px;
+}
+
+/* ---------- MODAL ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  color: #fff;
+  box-shadow: 0 0 15px #ff0000;
+  position: relative;
+  transform: translateY(-100px);
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-100px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100px); }
+}
+
+.modal-content h3 {
+  color: #ff0000;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.modal-content button {
+  padding: 10px 25px;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.modal-content button:hover {
+  background: #e60000;
+  transform: scale(1.05);
+}
+
+/* Input validation */
+input:invalid { border: 2px solid #ff0000; }
+input:valid { border: 2px solid #00ff00; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="newsletter.html" class="active">NewsLetter</a>
+      <a href="giftcards.html">GiftCards</a>
+      <a href="offers.html">Offers</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section id="newsletter">
+  <div class="newsletter-container">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form id="newsletterForm">
+      <input type="email" placeholder="Enter your email" required>
+      <input type="submit" value="Subscribe">
+    </form>
+  </div>
+</section>
+
+<div class="modal" id="newsletterModal">
+  <div class="modal-content">
+    <h3>✅ Subscription Successful!</h3>
+    <p>Thank you for subscribing to CAMP NOU Newsletter.</p>
+    <button id="closeNewsletterModal">OK</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+<script>
+const newsletterForm = document.getElementById('newsletterForm');
+const newsletterModal = document.getElementById('newsletterModal');
+const modalContent = newsletterModal.querySelector('.modal-content');
+const closeBtn = document.getElementById('closeNewsletterModal');
+
+newsletterForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!newsletterForm.checkValidity()) { newsletterForm.reportValidity(); return; }
+  newsletterModal.classList.add('active');
+  modalContent.style.animation = 'slideDown 0.5s forwards';
+});
+
+function closeModal() {
+  modalContent.style.animation = 'slideUp 0.5s forwards';
+  setTimeout(() => { newsletterModal.classList.remove('active'); newsletterForm.reset(); }, 500);
+}
+
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', e => { if (e.target === newsletterModal) closeModal(); });
+</script>
+
+</body>
+</html>

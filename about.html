@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMP NOU - About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- GLOBAL ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: url('https://wallpapercave.com/wp/wp2969205.jpg') center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- NAVBAR (SAME AS PRODUCT PAGE) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+/* underline from center */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- ABOUT SECTION ---------- */
+section#about {
+  max-width: 900px;
+  margin: 70px auto 90px;
+  padding: 35px 25px;
+  line-height: 1.9;
+  font-size: 1.1em;
+  background: rgba(0,0,0,0.45);
+  border-radius: 18px;
+}
+
+section#about h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ff0000;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.6);
+  color: #ff0000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html" class="active">Jerseys</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    At CAMP NOU, we live and breathe football. Our mission is simple: to bring fans
+    closer to the game they love through authentic, high-quality jerseys and
+    merchandise from clubs and national teams around the globe.
+    <br><br>
+    We understand that a jersey is more than just apparel; it’s a symbol of passion,
+    loyalty, and identity. That’s why we focus on quality, comfort, and authenticity,
+    so you can wear your team pride with confidence—on match days, at training, or
+    in everyday life.
+    <br><br>
+    Our platform is designed to offer a seamless shopping experience, from browsing
+    your favorite teams to fast and secure delivery at your doorstep. Beyond jerseys,
+    we provide a wide range of football merchandise including accessories and
+    collectibles.
+    <br><br>
+    At CAMP NOU, we celebrate the spirit of football and invite fans worldwide to join
+    our community. When you wear CAMP NOU, you’re not just supporting a team—you’re
+    living the game.
+  </p>
+</section>
+
+<footer>
+  © 2025 CAMP NOU. All Rights Reserved.
+</footer>
+
+</body>
+</html>
